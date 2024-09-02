@@ -1,6 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+} 
+
 .header-logo {
     height: 160px;
-    padding: 0;
 }
 
 
@@ -20,7 +24,7 @@
     margin-left: 84.5%;
 }
 
-button {
+#add-entry-button {
     height: 35px;
     width: 160px;
     background-color: #04AA6D; /* Green */
@@ -29,7 +33,78 @@ button {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-  }
+}
+
+#add-entry-button:hover {
+    background: darkgreen;
+}
+
+.add-entry-details-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.add-entry-details-content {
+    height: 750px;
+    width: 500px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+h2 {
+    font-family: Verdana, Tahoma, sans-serif;
+}
+/* Pop-up Inputs */
+input {
+    margin: 20px;
+    display: block;
+    width: 85%;
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+/* Pop-up buttons */
+
+#confirm-entry-button {
+    height: 35px;
+    width: 160px;
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#confirm-entry-button:hover {
+    background: darkgreen;
+}
+
+#cancel-entry-button {
+    height: 35px;
+    width: 160px;
+    background-color: red; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#cancel-entry-button:hover {
+    background: rgb(63, 6, 6);
+}
+
+
 
 .table-container {
     padding-right: 15px;

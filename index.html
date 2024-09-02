@@ -12,17 +12,31 @@
 
     <!-- Search Bar -->
     <div class="search-container">
-        <input class="search-bar" onkeyup="myFunction()" placeholder="  Search">
+        <input class="search-bar" onkeyup="searchTable()" placeholder="  Search">
     </div>
 
     <!-- Add Entry -->
     <div class="add-entry-container">
-        <button type="button"> Add Entry</button>
+        <button id="add-entry-button" type="button"> Add Entry</button>
     </div>
+
+
+    <!-- Enter details of Entry Popup-->
+    <div class="add-entry-details-container">
+        <div class="add-entry-details-content">
+            <h2>Entry Title</h2>
+            <input type="text" placeholder="Title">
+            <h2>Entry Rating</h2>
+            <input type="number" max="10" placeholder="Rating">
+            <button id="cancel-entry-button" type="button">Cancel</button>
+            <button id="confirm-entry-button" type="button">Confirm</button>
+        </div>
+    </div>
+
 
     <!-- Main Table -->
     <div class="table-container">
-        <table class="table table-sortable">
+        <table class="table" id="main-table">
             <!-- Headings -->
             <tr>
                 <th width="6%">#</th>
