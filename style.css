@@ -64,7 +64,8 @@ h2 {
     font-family: Verdana, Tahoma, sans-serif;
 }
 /* Pop-up Inputs */
-input {
+#entry-title,
+#entry-rating {
     margin: 20px;
     display: block;
     width: 85%;
