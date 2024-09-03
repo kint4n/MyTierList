@@ -126,6 +126,12 @@ td {
     padding: 1rem;
 }
 
+table,
+tr,
+td:last-child {
+    border: none;
+}
+
 .table-container {
     max-width: 100%;
     padding-top: 10px;

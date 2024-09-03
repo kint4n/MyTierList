@@ -29,6 +29,7 @@ function onConfirmClick(e) {
         alert('Please fill in Title or Rating!');
     }
     else {
+        const count = tableBody.rows.length;
         let today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
         const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -37,11 +38,11 @@ function onConfirmClick(e) {
 
         tableBody.innerHTML += `
             <tr>
-                <td data-cell="#"> </td>
+                <td data-cell="#">${count}</td>
                 <td data-cell="Date">${today}</td>
                 <td data-cell="Title">${entryTitle}</td>
                 <td data-cell="Rating">${entryRating}</td>
-                <td data-cell="Rank #"> </td>
+                <td width="6%"> <button class="deleteButton"> Delete </button></td>
             </tr>
         `;
 
@@ -49,6 +50,15 @@ function onConfirmClick(e) {
         document.getElementById('entry-title').value = '';
         document.getElementById('entry-rating').value = '';
     }
+}
+
+function onDeleteRow(e) {
+    if(!e.target.classList.contains('deleteButton')) {
+        return
+    }
+
+    const deleteButton = e.target;
+    deleteButton.closest("tr").remove();
 }
 
 
@@ -64,6 +74,7 @@ function init() {
     addEntryButton.addEventListener('click', onAddEntryClick);
     cancelEntry.addEventListener('click', onCancelClick);
     confirmEntry.addEventListener('click', onConfirmClick);
+    tableBody.addEventListener('click', onDeleteRow);
 }
 
 init();
