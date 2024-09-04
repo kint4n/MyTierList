@@ -5,6 +5,10 @@ const cancelEntry = document.getElementById("cancel-entry-button");
 const confirmEntry = document.getElementById("confirm-entry-button");
 const tableBody = document.getElementById("main-table");
 
+// Input fields
+const entryTitle = document.getElementById('entry-title');
+const entryRating = document.getElementById('entry-rating');
+
 //TODO
 function onAddEntryHover(e) {
     console.log('Hover');
@@ -23,9 +27,9 @@ function onCancelClick(e) {
 // confirm entry and input into the table
 function onConfirmClick(e) {
     e.preventDefault();
-    const entryTitle = document.getElementById('entry-title').value;
-    const entryRating = document.getElementById('entry-rating').value;
-    if(!entryTitle || !entryRating) {
+    // Try put global scope for clear input field
+
+    if(!entryTitle.value || !entryRating.value) {
         alert('Please fill in Title or Rating!');
     }
     else {
@@ -40,15 +44,15 @@ function onConfirmClick(e) {
             <tr>
                 <td data-cell="#">${count}</td>
                 <td data-cell="Date">${today}</td>
-                <td data-cell="Title">${entryTitle}</td>
-                <td data-cell="Rating">${entryRating}</td>
+                <td data-cell="Title">${entryTitle.value}</td>
+                <td data-cell="Rating">${entryRating.value}</td>
                 <td width="6%"> <button class="deleteButton"> Delete </button></td>
             </tr>
         `;
 
         // Clear input fields after confirming
-        document.getElementById('entry-title').value = '';
-        document.getElementById('entry-rating').value = '';
+        entryTitle.value = '';
+        entryRating.value = '';
     }
 }
 
