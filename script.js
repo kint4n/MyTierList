@@ -9,7 +9,42 @@ const tableBody = document.getElementById("main-table");
 const entryTitle = document.getElementById('entry-title');
 const entryRating = document.getElementById('entry-rating');
 
-//TODO
+function displayTable() {
+    const itemsFromStorage = getItemsFromStorage();
+
+    itemsFromStorage.forEach(item => tableBody.innerHTML += item);
+
+}
+
+function addItemToStorage(item){
+    let itemsFromStorage = getItemsFromStorage(item);
+
+    if(localStorage.getItem('items') === null) {
+        itemsFromStorage = [];
+    }
+    else {
+        itemsFromStorage = JSON.parse(localStorage.getItem('items'));
+    }
+
+    itemsFromStorage.push(item);
+
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+}
+
+function getItemsFromStorage() {
+    let itemsFromStorage;
+
+    if(localStorage.getItem('items') === null) {
+        itemsFromStorage = [];
+    }
+    else {
+        itemsFromStorage = JSON.parse(localStorage.getItem('items'));
+    }
+
+    return itemsFromStorage;
+}
+
+
 function onAddEntryHover(e) {
     console.log('Hover');
 }
@@ -32,6 +67,10 @@ function onConfirmClick(e) {
     if(!entryTitle.value || !entryRating.value) {
         alert('Please fill in Title or Rating!');
     }
+    else if(entryRating.value <= 0 || entryRating.value >= 10) {
+        alert('Please enter a rating between 0-10');
+        entryRating.value = '';
+    }
     else {
         const count = tableBody.rows.length;
         let today = new Date();
@@ -40,7 +79,7 @@ function onConfirmClick(e) {
         const yyyy = today.getFullYear();
         today = `${dd}/${mm}/${yyyy}`;
 
-        tableBody.innerHTML += `
+        const item = `
             <tr>
                 <td data-cell="#">${count}</td>
                 <td data-cell="Date">${today}</td>
@@ -49,6 +88,10 @@ function onConfirmClick(e) {
                 <td width="6%"> <button class="deleteButton"> Delete </button></td>
             </tr>
         `;
+
+        tableBody.innerHTML += item;
+
+        addItemToStorage(item);
 
         // Clear input fields after confirming
         entryTitle.value = '';
@@ -65,20 +108,13 @@ function onDeleteRow(e) {
     deleteButton.closest("tr").remove();
 }
 
-
-
-
-
-
-
-
-
-
 function init() {
     addEntryButton.addEventListener('click', onAddEntryClick);
     cancelEntry.addEventListener('click', onCancelClick);
     confirmEntry.addEventListener('click', onConfirmClick);
     tableBody.addEventListener('click', onDeleteRow);
+
+    displayTable();
 }
 
 init();
